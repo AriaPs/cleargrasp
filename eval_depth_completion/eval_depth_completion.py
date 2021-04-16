@@ -202,6 +202,7 @@ if __name__ == '__main__':
         metrics = depthcomplete.compute_errors(depth_gt, output_depth, mask_valid_region)
 
         print('\nImage {:09d} / {}:'.format(i, len(rgb_file_list) - 1))
+        """
         print('{:>15}:'.format('rmse'), metrics['rmse'])
         print('{:>15}:'.format('abs_rel'), metrics['abs_rel'])
         print('{:>15}:'.format('mae'), metrics['mae'])
@@ -224,7 +225,7 @@ if __name__ == '__main__':
         abs_rel_mean += metrics['abs_rel']
         mae_mean += metrics['mae']
         sq_rel_mean += metrics['sq_rel']
-
+        """
         # Save Results of Depth Completion
         error_output_depth, error_filtered_output_depth = depthcomplete.store_depth_completion_outputs(
             root_dir=results_dir,
@@ -233,7 +234,7 @@ if __name__ == '__main__':
             max_depth=config.depthVisualization.maxDepth)
         # print('    Mean Absolute Error in output depth (if Synthetic Data)   = {:.4f} cm'.format(error_output_depth))
         # print('    Mean Absolute Error in filtered depth (if Synthetic Data) = {:.4f} cm'.format(error_filtered_output_depth))
-
+    """
     # Calculate Mean Errors over entire Dataset
     a1_mean = round(a1_mean / len(rgb_file_list), 2)
     a2_mean = round(a2_mean / len(rgb_file_list), 2)
@@ -250,9 +251,10 @@ if __name__ == '__main__':
     print('{:>15}:'.format('a1.05_mean'), a1_mean)
     print('{:>15}:'.format('a1.10_mean'), a2_mean)
     print('{:>15}:'.format('a1.25_mean'), a3_mean)
-
+   
     # Write the data into a csv file
     with open(os.path.join(results_dir, csv_filename), 'a', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=field_names, delimiter=',')
         row_data = ['MEAN', rmse_mean, abs_rel_mean, mae_mean, a1_mean, a2_mean, a3_mean]
         writer.writerow(dict(zip(field_names, row_data)))
+    """
