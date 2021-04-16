@@ -1,4 +1,2 @@
-!config/*.yaml.sample
-config/*.yaml
 
 results/*
