@@ -176,7 +176,7 @@ if __name__ == '__main__':
         except depth_completion_api.DepthCompletionError as e:
             print('Depth Completion Failed:\n  {}\n  ...skipping image {}'.format(e, i))
             continue
-
+        """
         # Compute Errors in Depth Estimation over the Masked Area
         # If a folder of masks is given, use it to calc error only over masked regions, else over entire image
         if segmentation_masks_list:
@@ -200,7 +200,7 @@ if __name__ == '__main__':
         mask_valid_region = (mask_valid_region.astype(np.uint8) * 255)
 
         metrics = depthcomplete.compute_errors(depth_gt, output_depth, mask_valid_region)
-
+        """
         print('\nImage {:09d} / {}:'.format(i, len(rgb_file_list) - 1))
         """
         print('{:>15}:'.format('rmse'), metrics['rmse'])
